@@ -29,7 +29,6 @@
       scroll-behavior: smooth;
     }
 
-    /* === АНИМАЦИЯ ФОНА === */
     .bg-blobs {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1; overflow: hidden; pointer-events: none;
@@ -44,81 +43,92 @@
       100% { transform: translate(80px, 80px) scale(1.1); }
     }
 
-    header { position: sticky; top: 0; z-index: 1000; background: var(--glass); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 102, 255, 0.1); padding: 18px 0; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    header { position: sticky; top: 0; z-index: 1000; background: var(--glass); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 102, 255, 0.1); padding: 15px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
     
-    /* ТОЛЬКО ТЕКСТ БЕЗ ИКОНКИ */
     .logo {
-      font-size: 1.7rem; font-weight: 800; color: var(--text-dark);
-      cursor: pointer; letter-spacing: -1.2px;
+      font-size: 1.5rem; font-weight: 800; color: var(--text-dark);
+      cursor: pointer; letter-spacing: -1px;
     }
 
-    .nav-links { display: flex; gap: 30px; }
-    .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
-    .nav-links a:hover { color: var(--blue-main); }
+    .nav-links { display: flex; gap: 25px; }
+    .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 500; transition: 0.3s; font-size: 0.9rem; }
+    
+    /* Mobile Nav Hide */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .logo { font-size: 1.3rem; }
+    }
 
-    .btn { padding: 14px 28px; border-radius: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; border: none; display: inline-flex; align-items: center; gap: 10px; font-size: 1rem; }
+    .btn { padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; border: none; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
     .btn-primary { background: var(--blue-main); color: var(--white); box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2); }
     .btn-outline { background: var(--white); color: var(--blue-main); border: 2px solid var(--blue-main); }
 
-    .hero { padding: 100px 0; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .hero { padding: 60px 0; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
     .hero-content { flex: 1; }
-    .hero-content h1 { font-size: 4.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; letter-spacing: -2px; }
+    .hero-content h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -2px; }
     .hero-content span { color: var(--blue-main); }
-    .hero-content p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 40px; max-width: 550px; line-height: 1.6; }
+    .hero-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 35px; max-width: 550px; line-height: 1.5; }
 
-    /* === АНИМАЦИЯ ПУЛА === */
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; text-align: center; padding: 40px 0; }
+      .hero-content h1 { font-size: 2.8rem; letter-spacing: -1px; }
+      .hero-content p { font-size: 1.1rem; margin: 0 auto 30px; }
+      .hero-content div { justify-content: center; flex-wrap: wrap; }
+      .hero-visual { width: 100%; display: flex; justify-content: center; }
+    }
+
     .hero-visual { flex: 1; display: flex; justify-content: flex-end; }
-    .floating-card { background: var(--white); padding: 30px; border-radius: 35px; box-shadow: var(--shadow); border: 1px solid rgba(0, 102, 255, 0.1); animation: float 6s infinite ease-in-out; width: 100%; max-width: 400px; }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    .floating-card { background: var(--white); padding: 25px; border-radius: 30px; box-shadow: var(--shadow); border: 1px solid rgba(0, 102, 255, 0.1); animation: float 6s infinite ease-in-out; width: 100%; max-width: 380px; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-    .chart-container { height: 160px; display: flex; align-items: flex-end; gap: 12px; }
-    .bar { width: 25%; background: #E0E7FF; border-radius: 10px; transform: scaleY(0); transform-origin: bottom; transition: transform 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+    .chart-container { height: 140px; display: flex; align-items: flex-end; gap: 10px; }
+    .bar { width: 25%; background: #E0E7FF; border-radius: 8px; transform: scaleY(0); transform-origin: bottom; transition: transform 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
     .bar.active { transform: scaleY(1); }
-    .bar-main { background: var(--blue-main); box-shadow: 0 10px 25px rgba(0,102,255,0.4); }
+    .bar-main { background: var(--blue-main); box-shadow: 0 10px 20px rgba(0,102,255,0.3); }
 
-    .section-title { text-align: center; font-size: 2.8rem; margin: 100px 0 60px; font-weight: 900; letter-spacing: -1.5px; }
+    .section-title { text-align: center; font-size: 2.5rem; margin: 80px 0 40px; font-weight: 900; letter-spacing: -1px; }
+    @media (max-width: 768px) { .section-title { font-size: 2rem; margin: 60px 0 30px; } }
     
-    /* === HOW IT WORKS === */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-bottom: 120px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 80px; }
     .card { 
-      background: var(--white); padding: 40px; border-radius: 32px; transition: 0.4s; 
+      background: var(--white); padding: 35px; border-radius: 28px; transition: 0.4s; 
       border: 1px solid rgba(0, 102, 255, 0.03); box-shadow: 0 10px 30px rgba(0,0,0,0.02);
     }
-    .card:hover { transform: translateY(-12px); border-color: var(--blue-main); box-shadow: 0 35px 70px rgba(0, 102, 255, 0.12); }
+    .card:hover { transform: translateY(-8px); border-color: var(--blue-main); box-shadow: 0 30px 60px rgba(0, 102, 255, 0.1); }
     
-    .card-icon { width: 65px; height: 65px; background: var(--blue-light); color: var(--blue-main); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 25px; }
-    .card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; }
-    .card p { color: var(--text-gray); line-height: 1.6; font-size: 0.95rem; }
+    .card-icon { width: 60px; height: 60px; background: var(--blue-light); color: var(--blue-main); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+    .card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 12px; }
+    .card p { color: var(--text-gray); line-height: 1.5; font-size: 0.95rem; }
 
-    /* === ТАБЛИЦА С УНИКАЛЬНЫМИ ЦВЕТАМИ === */
-    .table-box { background: var(--white); border-radius: 35px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 120px; border: 1px solid rgba(0, 102, 255, 0.05); }
+    /* === MOBILE TABLE RESPONSIVENESS === */
+    .table-wrapper { width: 100%; overflow-x: auto; margin-bottom: 80px; border-radius: 30px; box-shadow: var(--shadow); -webkit-overflow-scrolling: touch; }
+    .table-box { background: var(--white); min-width: 600px; border: 1px solid rgba(0, 102, 255, 0.05); }
     table { width: 100%; border-collapse: collapse; }
-    th { background: #F9FBFF; padding: 25px; text-align: left; color: var(--text-gray); font-size: 0.8rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; }
-    td { padding: 25px; border-bottom: 1px solid #F1F5F9; font-weight: 600; }
+    th { background: #F9FBFF; padding: 20px; text-align: left; color: var(--text-gray); font-size: 0.75rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
+    td { padding: 20px; border-bottom: 1px solid #F1F5F9; font-weight: 600; font-size: 0.95rem; }
     
-    .badge { padding: 8px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: 800; }
-    .color-1 { background: #FEE2E2; color: #DC2626; } /* Красный */
-    .color-2 { background: #FFEDD5; color: #D97706; } /* Оранжевый */
-    .color-3 { background: #FEF9C3; color: #A16207; } /* Желтый */
-    .color-4 { background: #E0F2FE; color: #0284C7; } /* Голубой */
-    .color-5 { background: #DCFCE7; color: #166534; } /* Зеленый */
+    .badge { padding: 6px 14px; border-radius: 10px; font-size: 0.75rem; font-weight: 800; white-space: nowrap; }
+    .color-1 { background: #FEE2E2; color: #DC2626; }
+    .color-2 { background: #FFEDD5; color: #D97706; }
+    .color-3 { background: #FEF9C3; color: #A16207; }
+    .color-4 { background: #E0F2FE; color: #0284C7; }
+    .color-5 { background: #DCFCE7; color: #166534; }
 
-    .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; z-index: 2000; }
-    .modal-content { background: var(--white); padding: 60px; border-radius: 45px; max-width: 500px; width: 90%; text-align: center; }
+    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+    .modal-content { background: var(--white); padding: 40px 20px; border-radius: 35px; max-width: 450px; width: 100%; text-align: center; }
 
-    @media (max-width: 900px) { .hero { flex-direction: column; text-align: center; } .hero-visual { justify-content: center; } .hero-content h1 { font-size: 3.2rem; } }
   </style>
 </head>
 <body>
 
 <div class="bg-blobs">
-  <div class="blob" style="width: 400px; height: 400px; left: -100px; top: 10%;"></div>
-  <div class="blob" style="width: 300px; height: 300px; right: 0; bottom: 10%; animation-delay: -5s;"></div>
+  <div class="blob" style="width: 300px; height: 300px; left: -50px; top: 10%;"></div>
+  <div class="blob" style="width: 250px; height: 250px; right: -50px; bottom: 10%;"></div>
 </div>
 
 <header>
@@ -139,16 +149,16 @@
     <div class="hero-content">
       <h1 class="reveal active">Next <span>Generation</span> Assets.</h1>
       <p class="reveal active">GemStock is a transparent ecosystem for those seeking honest growth and reliable algorithms. No middlemen. No manipulations.</p>
-      <div class="reveal active" style="display: flex; gap: 15px; justify-content: inherit;">
+      <div class="reveal active" style="display: flex; gap: 12px;">
         <button class="btn btn-primary js-btn">Get Started <i class="fas fa-arrow-right"></i></button>
         <button class="btn btn-outline js-btn">Learn More</button>
       </div>
     </div>
     <div class="hero-visual reveal active">
       <div class="floating-card">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 25px; align-items: center;">
-          <span style="font-weight: 800;">Real-time Growth</span>
-          <span style="color: var(--blue-main); font-weight: 900; background: var(--blue-light); padding: 5px 12px; border-radius: 10px;">+15.00%</span>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center;">
+          <span style="font-weight: 800; font-size: 0.9rem;">Real-time Growth</span>
+          <span style="color: var(--blue-main); font-weight: 900; background: var(--blue-light); padding: 4px 10px; border-radius: 8px; font-size: 0.85rem;">+15.00%</span>
         </div>
         <div class="chart-container">
           <div class="bar" style="height: 35%;"></div>
@@ -188,32 +198,34 @@
 
   <section id="fees">
     <h2 class="section-title reveal">Fee Schedule</h2>
-    <div class="table-box reveal">
-      <table>
-        <thead>
-          <tr>
-            <th>Holding Period</th>
-            <th>Sell Fee</th>
-            <th>Recommendation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Less than 1 day</td><td>15%</td><td><span class="badge color-1">Emergency cases only</span></td></tr>
-          <tr><td>1 – 7 days</td><td>12%</td><td><span class="badge color-2">Unprofitable, hold longer</span></td></tr>
-          <tr><td>7 – 30 days</td><td>8%</td><td><span class="badge color-3">Wait for penalty drop</span></td></tr>
-          <tr><td>30 – 90 days</td><td>4%</td><td><span class="badge color-4">Almost at the target</span></td></tr>
-          <tr><td>90+ days</td><td><span style="color: #166534; font-weight: 900;">0%</span></td><td><span class="badge color-5">Maximum profit reached</span></td></tr>
-        </tbody>
-      </table>
+    <div class="table-wrapper reveal">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Holding Period</th>
+              <th>Sell Fee</th>
+              <th>Recommendation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Less than 1 day</td><td>15%</td><td><span class="badge color-1">Emergency cases only</span></td></tr>
+            <tr><td>1 – 7 days</td><td>12%</td><td><span class="badge color-2">Unprofitable, hold longer</span></td></tr>
+            <tr><td>7 – 30 days</td><td>8%</td><td><span class="badge color-3">Wait for penalty drop</span></td></tr>
+            <tr><td>30 – 90 days</td><td>4%</td><td><span class="badge color-4">Almost at the target</span></td></tr>
+            <tr><td>90+ days</td><td><span style="color: #166534; font-weight: 900;">0%</span></td><td><span class="badge color-5">Maximum profit reached</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 </div>
 
 <div id="actionModal" class="modal">
   <div class="modal-content">
-    <i class="fas fa-hourglass-half" style="font-size: 4rem; color: var(--blue-main); margin-bottom: 25px; display: block;"></i>
+    <i class="fas fa-hourglass-half" style="font-size: 3.5rem; color: var(--blue-main); margin-bottom: 20px; display: block;"></i>
     <h2 style="font-weight: 900;">Coming Soon</h2>
-    <p style="margin: 20px 0; color: var(--text-gray); line-height: 1.6;">The platform is currently in early access. Full functionality will be available after the audit.</p>
+    <p style="margin: 15px 0; color: var(--text-gray); line-height: 1.5; font-size: 0.95rem;">Platform is in early access. Full functionality will be available after the audit.</p>
     <button class="btn btn-primary" onclick="closeModal()" style="width: 100%; justify-content: center;">Understood</button>
   </div>
 </div>
@@ -223,7 +235,6 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        // Запуск анимации столбиков при скролле
         if (entry.target.classList.contains('hero-visual')) {
           document.querySelectorAll('.bar').forEach((bar, index) => {
             setTimeout(() => { bar.classList.add('active'); }, index * 150);
