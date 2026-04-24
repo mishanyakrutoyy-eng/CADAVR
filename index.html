@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>GemStock | Premium Digital Assets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --blue-main: #0066FF;
+      --blue-deep: #0044BB;
+      --blue-light: #EBF3FF;
+      --bg-gradient: linear-gradient(135deg, #F8FAFF 0%, #FFFFFF 100%);
+      --text-dark: #0F172A;
+      --text-gray: #64748B;
+      --white: #FFFFFF;
+      --shadow: 0 20px 50px rgba(0, 102, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.8);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* === АНИМАЦИЯ ФОНА === */
+    .bg-blobs {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; overflow: hidden; pointer-events: none;
+    }
+    .blob {
+      position: absolute; background: var(--blue-main);
+      border-radius: 50%; opacity: 0.04; filter: blur(60px);
+      animation: move 20s infinite alternate ease-in-out;
+    }
+    @keyframes move {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(80px, 80px) scale(1.1); }
+    }
+
+    header { position: sticky; top: 0; z-index: 1000; background: var(--glass); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 102, 255, 0.1); padding: 18px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+    
+    /* ТОЛЬКО ТЕКСТ БЕЗ ИКОНКИ */
+    .logo {
+      font-size: 1.7rem; font-weight: 800; color: var(--text-dark);
+      cursor: pointer; letter-spacing: -1.2px;
+    }
+
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--blue-main); }
+
+    .btn { padding: 14px 28px; border-radius: 14px; font-weight: 600; cursor: pointer; transition: 0.3s; border: none; display: inline-flex; align-items: center; gap: 10px; font-size: 1rem; }
+    .btn-primary { background: var(--blue-main); color: var(--white); box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2); }
+    .btn-outline { background: var(--white); color: var(--blue-main); border: 2px solid var(--blue-main); }
+
+    .hero { padding: 100px 0; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .hero-content { flex: 1; }
+    .hero-content h1 { font-size: 4.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; letter-spacing: -2px; }
+    .hero-content span { color: var(--blue-main); }
+    .hero-content p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 40px; max-width: 550px; line-height: 1.6; }
+
+    /* === АНИМАЦИЯ ПУЛА === */
+    .hero-visual { flex: 1; display: flex; justify-content: flex-end; }
+    .floating-card { background: var(--white); padding: 30px; border-radius: 35px; box-shadow: var(--shadow); border: 1px solid rgba(0, 102, 255, 0.1); animation: float 6s infinite ease-in-out; width: 100%; max-width: 400px; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+    .chart-container { height: 160px; display: flex; align-items: flex-end; gap: 12px; }
+    .bar { width: 25%; background: #E0E7FF; border-radius: 10px; transform: scaleY(0); transform-origin: bottom; transition: transform 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+    .bar.active { transform: scaleY(1); }
+    .bar-main { background: var(--blue-main); box-shadow: 0 10px 25px rgba(0,102,255,0.4); }
+
+    .section-title { text-align: center; font-size: 2.8rem; margin: 100px 0 60px; font-weight: 900; letter-spacing: -1.5px; }
+    
+    /* === HOW IT WORKS === */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-bottom: 120px; }
+    .card { 
+      background: var(--white); padding: 40px; border-radius: 32px; transition: 0.4s; 
+      border: 1px solid rgba(0, 102, 255, 0.03); box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    }
+    .card:hover { transform: translateY(-12px); border-color: var(--blue-main); box-shadow: 0 35px 70px rgba(0, 102, 255, 0.12); }
+    
+    .card-icon { width: 65px; height: 65px; background: var(--blue-light); color: var(--blue-main); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 25px; }
+    .card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; }
+    .card p { color: var(--text-gray); line-height: 1.6; font-size: 0.95rem; }
+
+    /* === ТАБЛИЦА С УНИКАЛЬНЫМИ ЦВЕТАМИ === */
+    .table-box { background: var(--white); border-radius: 35px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 120px; border: 1px solid rgba(0, 102, 255, 0.05); }
+    table { width: 100%; border-collapse: collapse; }
+    th { background: #F9FBFF; padding: 25px; text-align: left; color: var(--text-gray); font-size: 0.8rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; }
+    td { padding: 25px; border-bottom: 1px solid #F1F5F9; font-weight: 600; }
+    
+    .badge { padding: 8px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: 800; }
+    .color-1 { background: #FEE2E2; color: #DC2626; } /* Красный */
+    .color-2 { background: #FFEDD5; color: #D97706; } /* Оранжевый */
+    .color-3 { background: #FEF9C3; color: #A16207; } /* Желтый */
+    .color-4 { background: #E0F2FE; color: #0284C7; } /* Голубой */
+    .color-5 { background: #DCFCE7; color: #166534; } /* Зеленый */
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; z-index: 2000; }
+    .modal-content { background: var(--white); padding: 60px; border-radius: 45px; max-width: 500px; width: 90%; text-align: center; }
+
+    @media (max-width: 900px) { .hero { flex-direction: column; text-align: center; } .hero-visual { justify-content: center; } .hero-content h1 { font-size: 3.2rem; } }
+  </style>
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob" style="width: 400px; height: 400px; left: -100px; top: 10%;"></div>
+  <div class="blob" style="width: 300px; height: 300px; right: 0; bottom: 10%; animation-delay: -5s;"></div>
+</div>
+
+<header>
+  <div class="container">
+    <div class="nav-wrapper">
+      <div class="logo" onclick="location.reload()">GemStock</div>
+      <nav class="nav-links">
+        <a href="#how">How It Works?</a>
+        <a href="#fees">Fee Schedule</a>
+      </nav>
+      <button class="btn btn-outline js-btn">Login</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="reveal active">Next <span>Generation</span> Assets.</h1>
+      <p class="reveal active">GemStock is a transparent ecosystem for those seeking honest growth and reliable algorithms. No middlemen. No manipulations.</p>
+      <div class="reveal active" style="display: flex; gap: 15px; justify-content: inherit;">
+        <button class="btn btn-primary js-btn">Get Started <i class="fas fa-arrow-right"></i></button>
+        <button class="btn btn-outline js-btn">Learn More</button>
+      </div>
+    </div>
+    <div class="hero-visual reveal active">
+      <div class="floating-card">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 25px; align-items: center;">
+          <span style="font-weight: 800;">Real-time Growth</span>
+          <span style="color: var(--blue-main); font-weight: 900; background: var(--blue-light); padding: 5px 12px; border-radius: 10px;">+15.00%</span>
+        </div>
+        <div class="chart-container">
+          <div class="bar" style="height: 35%;"></div>
+          <div class="bar" style="height: 55%; background: #C7D2FE;"></div>
+          <div class="bar" style="height: 75%; background: #818CF8;"></div>
+          <div class="bar bar-main" style="height: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2 class="section-title reveal">How It Works?</h2>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="card-icon"><i class="fas fa-seedling"></i></div>
+        <h3>Organic Growth</h3>
+        <p>15% of every purchase instantly increases the value of the total pool. No manipulated charts.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon"><i class="fas fa-user-lock"></i></div>
+        <h3>Holder Protection</h3>
+        <p>We encourage long-term ownership. The longer you stay with us, the higher your net profit.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
+        <h3>Fair Start</h3>
+        <p>Smart limit system blocks whale attempts to buy out the entire volume in the first seconds of launch.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+        <h3>Gem in 1 Minute</h3>
+        <p>Create your asset for just $1. Set your own rules and start growing your community.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fees">
+    <h2 class="section-title reveal">Fee Schedule</h2>
+    <div class="table-box reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Holding Period</th>
+            <th>Sell Fee</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Less than 1 day</td><td>15%</td><td><span class="badge color-1">Emergency cases only</span></td></tr>
+          <tr><td>1 – 7 days</td><td>12%</td><td><span class="badge color-2">Unprofitable, hold longer</span></td></tr>
+          <tr><td>7 – 30 days</td><td>8%</td><td><span class="badge color-3">Wait for penalty drop</span></td></tr>
+          <tr><td>30 – 90 days</td><td>4%</td><td><span class="badge color-4">Almost at the target</span></td></tr>
+          <tr><td>90+ days</td><td><span style="color: #166534; font-weight: 900;">0%</span></td><td><span class="badge color-5">Maximum profit reached</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<div id="actionModal" class="modal">
+  <div class="modal-content">
+    <i class="fas fa-hourglass-half" style="font-size: 4rem; color: var(--blue-main); margin-bottom: 25px; display: block;"></i>
+    <h2 style="font-weight: 900;">Coming Soon</h2>
+    <p style="margin: 20px 0; color: var(--text-gray); line-height: 1.6;">The platform is currently in early access. Full functionality will be available after the audit.</p>
+    <button class="btn btn-primary" onclick="closeModal()" style="width: 100%; justify-content: center;">Understood</button>
+  </div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        // Запуск анимации столбиков при скролле
+        if (entry.target.classList.contains('hero-visual')) {
+          document.querySelectorAll('.bar').forEach((bar, index) => {
+            setTimeout(() => { bar.classList.add('active'); }, index * 150);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal, .hero-visual').forEach(el => observer.observe(el));
+
+  const modal = document.getElementById('actionModal');
+  function closeModal() { modal.style.display = 'none'; }
+  document.querySelectorAll('.js-btn').forEach(btn => {
+    btn.addEventListener('click', () => { modal.style.display = 'flex'; });
+  });
+  window.onclick = (e) => { if (e.target == modal) closeModal(); }
+</script>
+
+</body>
+</html>
